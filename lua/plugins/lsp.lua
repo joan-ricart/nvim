@@ -18,12 +18,20 @@ return {
 							end,
 						})
 					end
+
+					vim.keymap.set("n", "<leader>df", function()
+						vim.diagnostic.open_float();
+					end, { desc = "[d]iagnostic [f]loat" })
 				end,
 			})
 
 			local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 			require 'lspconfig'.gopls.setup {
+				capabilities = capabilities,
+			}
+
+			require 'lspconfig'.clangd.setup {
 				capabilities = capabilities,
 			}
 

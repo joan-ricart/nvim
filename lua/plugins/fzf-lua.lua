@@ -11,6 +11,14 @@ return {
 				{ "<leader>f", group = "Find" }
 			})
 
+			vim.keymap.set("n", "<leader>fb", function()
+				fzflua.buffers()
+			end, { desc = "[f]ind [b]uffers" })
+
+			vim.keymap.set("n", "<leader>fg", function()
+				fzflua.live_grep_native()
+			end, { desc = "[f]ind [g]rep" })
+
 			vim.keymap.set("n", "<leader>ff", function()
 				fzflua.files()
 			end, { desc = "[f]ind [f]iles" })
@@ -19,9 +27,9 @@ return {
 				fzflua.oldfiles()
 			end, { desc = "[f]ind [r]ecent" })
 
-			vim.keymap.set("n", "<leader>d", function()
-				fzflua.lsp_document_diagnostics()
-			end, { desc = "[d]iagnostics" })
+			-- vim.keymap.set("n", "<leader>d", function()
+			-- 	fzflua.lsp_document_diagnostics()
+			-- end, { desc = "[d]iagnostics" })
 
 			vim.keymap.set("n", "<leader>ca", function()
 				fzflua.lsp_code_actions()
