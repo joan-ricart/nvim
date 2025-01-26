@@ -25,7 +25,12 @@ return {
 				end,
 			})
 
+			vim.keymap.set("n", "gd", function()
+					vim.lsp.buf.definition()
+				end, {desc = "[g]o to [g]efinition"})
+
 			local capabilities = require('blink.cmp').get_lsp_capabilities()
+
 
 			require 'lspconfig'.gopls.setup {
 				capabilities = capabilities,
@@ -69,6 +74,40 @@ return {
 					Lua = {}
 				}
 			}
+
+			-- set floating window borders
+			vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
+			vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
+			local border = {
+				{ '┌', 'FloatBorder' },
+				{ '─', 'FloatBorder' },
+				{ '┐', 'FloatBorder' },
+				{ '│', 'FloatBorder' },
+				{ '┘', 'FloatBorder' },
+				{ '─', 'FloatBorder' },
+				{ '└', 'FloatBorder' },
+				{ '│', 'FloatBorder' },
+			}
+
+			local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+			function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+				opts = opts or {}
+				opts.border = opts.border or border
+				return orig_util_open_floating_preview(contents, syntax, opts, ...)
+			end
+
+			-- add keymap to toggle signature help
+			local wk = require("which-key")
+
+			wk.add({
+				{ "<leader>s", group = "Signature" }
+			})
+
+			vim.keymap.set("n", "<leader>sh", function()
+				vim.lsp.buf.signature_help()
+			end, { desc = "[s]ignature [h]elp" })
+
 		end
 	}
 }
