@@ -26,21 +26,29 @@ return {
 			})
 
 			vim.keymap.set("n", "gd", function()
-					vim.lsp.buf.definition()
-				end, {desc = "[g]o to [g]efinition"})
+				vim.lsp.buf.definition()
+			end, { desc = "[g]o to [g]efinition" })
 
 			local capabilities = require('blink.cmp').get_lsp_capabilities()
+			local lspconfig = require('lspconfig')
 
+			lspconfig.gopls.setup {
+				capabilities = capabilities,
 
-			require 'lspconfig'.gopls.setup {
+			}
+
+			lspconfig.clangd.setup {
 				capabilities = capabilities,
 			}
 
-			require 'lspconfig'.clangd.setup {
+			lspconfig.phpactor.setup {
 				capabilities = capabilities,
+				on_attach = function()
+					print("phpactor attached")
+				end
 			}
 
-			require 'lspconfig'.lua_ls.setup {
+			lspconfig.lua_ls.setup {
 				capabilities = capabilities,
 				on_init = function(client)
 					if client.workspace_folders then
@@ -107,7 +115,6 @@ return {
 			vim.keymap.set("n", "<leader>sh", function()
 				vim.lsp.buf.signature_help()
 			end, { desc = "[s]ignature [h]elp" })
-
 		end
 	}
 }

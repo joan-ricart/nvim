@@ -1,9 +1,9 @@
 local M = {
-	"EdenEast/nightfox.nvim",
+	"ellisonleao/gruvbox.nvim",
 	lazy = false,
 	priority = 1000,
 	config = function()
-		vim.cmd.colorscheme("nightfox")
+		vim.cmd.colorscheme("gruvbox")
 	end
 }
 
