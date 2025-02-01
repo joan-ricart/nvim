@@ -5,7 +5,9 @@ return {
 			local fzflua = require("fzf-lua")
 			local wk = require("which-key")
 
-			fzflua.setup({})
+			fzflua.setup({
+				fzf_colors = false,
+			})
 
 			wk.add({
 				{ "<leader>f", group = "Find" }

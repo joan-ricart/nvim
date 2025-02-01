@@ -1,9 +1,9 @@
 local M = {
-	"drewxs/ash.nvim",
+	"ficcdaf/ashen.nvim",
 	lazy = false,
 	priority = 1000,
 	config = function()
-		vim.cmd.colorscheme('ash')
+		vim.cmd.colorscheme('ashen')
 	end
 }
 
