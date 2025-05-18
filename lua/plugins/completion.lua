@@ -1,21 +1,28 @@
-local M = {
+return {
 	'saghen/blink.cmp',
-	dependencies = 'rafamadriz/friendly-snippets',
+	dependencies = { 'rafamadriz/friendly-snippets' },
 
-	version = '*',
+	version = '1.*',
 
 	opts = {
-		-- 'default' for mappings similar to built-in completion
-		-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-		-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-		-- See the full "keymap" documentation for information on defining your own keymap.
-		keymap = { preset = 'default' },
+    -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+    -- 'super-tab' for mappings similar to vscode (tab to accept)
+    -- 'enter' for enter to accept
+    -- 'none' for no mappings
+    --
+    -- All presets have the following mappings:
+    -- C-space: Open menu or open docs if already open
+    -- C-n/C-p or Up/Down: Select next/previous item
+    -- C-e: Hide menu
+    -- C-k: Toggle signature help (if signature.enabled = true)
+    --
+    -- See :h blink-cmp-config-keymap for defining your own keymap
+    keymap = { preset = 'default' },
 
 		appearance = {
-			use_nvim_cmp_as_default = true,
 			nerd_font_variant = 'mono'
 		},
+
+		completion = { documentation = { auto_show = true } },
 	},
 }
-
-return { M }

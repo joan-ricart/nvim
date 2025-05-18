@@ -29,10 +29,6 @@ return {
 				fzflua.oldfiles()
 			end, { desc = "[f]ind [r]ecent" })
 
-			-- vim.keymap.set("n", "<leader>d", function()
-			-- 	fzflua.lsp_document_diagnostics()
-			-- end, { desc = "[d]iagnostics" })
-
 			vim.keymap.set("n", "<leader>ca", function()
 				fzflua.lsp_code_actions()
 			end, { desc = "[c]ode [a]ctions" })
